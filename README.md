@@ -9,7 +9,7 @@ This module uses the [google](https://registry.terraform.io/providers/hashicorp/
 ```hcl
 module "vm" {
   source            = "iqz-systems/compute-vm/google"
-  version           = "1.0.0"
+  version           = "1.1.2"
 
   project_id     = data.google_project.my_project.project_id
   project_region = "us-east1"
