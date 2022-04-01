@@ -49,7 +49,7 @@ resource "google_compute_instance" "instance" {
     ignore_changes = [
       boot_disk[0].initialize_params[0].image,
       boot_disk[0].initialize_params[0].size,
-      metadata.ssh-keys,
+      metadata,
     ]
   }
 }
