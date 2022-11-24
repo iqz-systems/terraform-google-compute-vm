@@ -1,8 +1,3 @@
-variable "project_id" {
-  type        = string
-  description = "The id of the project where the instance has to be created."
-}
-
 variable "project_region" {
   type        = string
   description = "The region where the resources will be created."
