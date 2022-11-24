@@ -1,6 +1,6 @@
 resource "google_compute_address" "instance_ip" {
   name    = "${var.instance_name}-ip"
-  project = var.project_id
+  project = data.google_project.current.project_id
   region  = var.project_region
 }
 
@@ -12,7 +12,7 @@ data "google_compute_image" "instance_image" {
 
 resource "google_compute_instance" "instance" {
   name    = var.instance_name
-  project = var.project_id
+  project = data.google_project.current.project_id
 
   machine_type = var.machine_type
   zone         = var.instance_zone
