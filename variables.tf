@@ -53,6 +53,18 @@ variable "network_name" {
   description = "The network name to associate this vm with."
 }
 
+variable "subnetwork_name" {
+  type        = string
+  default     = "default"
+  description = "The sub-network name to associate this vm with."
+}
+
+variable "subnetwork_project" {
+  type        = string
+  default     = ""
+  description = "The project in which the subnetwork belongs."
+}
+
 variable "network_tags" {
   type        = list(string)
   description = "A list of network tags to be attached to the instance."
