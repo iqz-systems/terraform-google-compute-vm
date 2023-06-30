@@ -9,9 +9,11 @@ This module uses the [google](https://registry.terraform.io/providers/hashicorp/
 ```hcl
 module "vm" {
   source            = "iqz-systems/compute-vm/google"
-  version           = "1.1.4"
+  version           = "1.1.5"
 
-  project_id     = data.google_project.my_project.project_id
+  providers = {
+    google = google
+  }
   project_region = "us-east1"
   project_zone   = "us-east1-b"
   instance_name  = "vm-2"
@@ -36,6 +38,7 @@ module "vm" {
   labels = {
     app = "my-app"
   }
+  resource_policies = ["name-resource-policy"]
 }
 ```
 

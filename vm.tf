@@ -55,4 +55,5 @@ resource "google_compute_instance" "instance" {
       metadata,
     ]
   }
+  resource_policies = var.resource_policies
 }

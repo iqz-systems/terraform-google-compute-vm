@@ -74,3 +74,8 @@ variable "labels" {
   type        = map(string)
   description = "A map of labels to be associated with the instance."
 }
+
+variable "resource_policies" {
+  type        = list(string)
+  description = "A list of resource policies to be associated with the instance."
+}
