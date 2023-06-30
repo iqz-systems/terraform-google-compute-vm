@@ -78,4 +78,5 @@ variable "labels" {
 variable "resource_policies" {
   type        = list(string)
   description = "A list of resource policies to be associated with the instance."
+  default     = []
 }
