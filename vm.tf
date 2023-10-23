@@ -37,7 +37,9 @@ resource "google_compute_instance" "instance" {
     }
   }
 
-  metadata = {}
+  metadata = {
+    enable-oslogin = "TRUE"
+  }
 
   labels = var.labels
 
