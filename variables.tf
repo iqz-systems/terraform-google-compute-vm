@@ -35,11 +35,14 @@ variable "instance_image" {
     family  = string
     project = string
   })
-  description = "The OS image details of the instance. See https://cloud.google.com/compute/docs/images/os-details#general-info."
-  default = {
-    family  = "ubuntu-minimal-2004-lts"
-    project = "ubuntu-os-cloud"
-  }
+  description = "The OS image details of the instance. See https://cloud.google.com/compute/docs/images/os-details#general-info. Either this or source_disk must be provided."
+  default     = null
+}
+
+variable "source_disk" {
+  type        = string
+  description = "The name or self_link of the existing disk or disk image. To create an instance from a snapshot, first create a google_compute_disk from a snapshot and reference it here. Either this or instance_image must be provided."
+  default     = null
 }
 
 variable "service_account_email" {
