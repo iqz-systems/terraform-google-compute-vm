@@ -5,6 +5,7 @@ resource "google_compute_address" "instance_ip" {
 }
 
 data "google_compute_image" "instance_image" {
+  count = var.instance_image != null ? 1 : 0
   # https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts
   family  = var.instance_image.family
   project = var.instance_image.project
@@ -20,17 +21,20 @@ resource "google_compute_instance" "instance" {
   tags = var.network_tags
 
   boot_disk {
-    initialize_params {
-      image = data.google_compute_image.instance_image.self_link
-      size  = var.boot_disk_size
+    dynamic "initialize_params" {
+      for_each = var.instance_image != null ? [1] : []
+      content {
+        image = var.instance_image != null ? data.google_compute_image.instance_image.0.self_link : null
+        size  = var.boot_disk_size
+      }
     }
+    source = var.source_disk
   }
 
   network_interface {
     network            = var.network_name
     subnetwork         = var.subnetwork_name
     subnetwork_project = var.subnetwork_project
-
 
     access_config {
       nat_ip = google_compute_address.instance_ip.address
