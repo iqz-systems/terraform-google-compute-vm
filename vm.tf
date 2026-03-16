@@ -53,7 +53,7 @@ resource "google_compute_instance" "instance" {
 
   service_account {
     email  = var.service_account_email
-    scopes = ["cloud-platform"]
+    scopes = concat(["cloud-platform"], var.service_account_scopes)
   }
 
   lifecycle {

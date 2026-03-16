@@ -90,3 +90,10 @@ variable "metadata_startup_script" {
   sensitive   = false
   nullable    = true
 }
+
+variable "service_account_scopes" {
+  type        = list(string)
+  description = "Additional scopes to be supplied for the service account."
+  sensitive   = false
+  default     = []
+}
