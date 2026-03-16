@@ -89,6 +89,7 @@ variable "metadata_startup_script" {
   description = "The startup script to be injected into the VM."
   sensitive   = false
   nullable    = true
+  default     = null
 }
 
 variable "service_account_scopes" {
