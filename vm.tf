@@ -45,6 +45,8 @@ resource "google_compute_instance" "instance" {
     enable-oslogin = "TRUE"
   }
 
+  metadata_startup_script = var.metadata_startup_script
+
   labels = var.labels
 
   allow_stopping_for_update = true
