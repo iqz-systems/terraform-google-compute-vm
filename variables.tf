@@ -83,3 +83,10 @@ variable "resource_policies" {
   description = "A list of resource policies to be associated with the instance."
   default     = []
 }
+
+variable "metadata_startup_script" {
+  type        = string
+  description = "The startup script to be injected into the VM."
+  sensitive   = false
+  nullable    = true
+}
