@@ -48,7 +48,8 @@ resource "google_compute_instance" "instance" {
   }
 
   metadata = {
-    enable-oslogin = "TRUE"
+    enable-oslogin         = "TRUE"
+    block-project-ssh-keys = "TRUE"
   }
 
   metadata_startup_script = var.metadata_startup_script
