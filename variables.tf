@@ -3,11 +3,6 @@ variable "project_region" {
   description = "The region where the resources will be created."
 }
 
-variable "project_zone" {
-  type        = string
-  description = "The zone where the resources will be created."
-}
-
 variable "instance_name" {
   type        = string
   description = "The name of the instance to be created."
@@ -97,4 +92,16 @@ variable "service_account_scopes" {
   description = "Additional scopes to be supplied for the service account."
   sensitive   = false
   default     = []
+}
+
+variable "create_static_ip" {
+  type        = bool
+  description = "Whether to reserve a static (regional) external IP for the instance. Implies assign_external_ip."
+  default     = false
+}
+
+variable "assign_external_ip" {
+  type        = bool
+  description = "Whether to give the instance an external IP. When true and create_static_ip is false, an ephemeral IP is assigned by GCP. When false, the instance has no external IP."
+  default     = false
 }

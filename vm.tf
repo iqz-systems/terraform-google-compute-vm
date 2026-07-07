@@ -1,4 +1,6 @@
 resource "google_compute_address" "instance_ip" {
+  count = var.create_static_ip ? 1 : 0
+
   name    = "${var.instance_name}-ip"
   project = data.google_project.current.project_id
   region  = var.project_region
@@ -6,6 +8,7 @@ resource "google_compute_address" "instance_ip" {
 
 data "google_compute_image" "instance_image" {
   count = var.instance_image != null ? 1 : 0
+
   # https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts
   family  = var.instance_image.family
   project = var.instance_image.project
@@ -36,8 +39,11 @@ resource "google_compute_instance" "instance" {
     subnetwork         = var.subnetwork_name
     subnetwork_project = var.subnetwork_project
 
-    access_config {
-      nat_ip = google_compute_address.instance_ip.address
+    dynamic "access_config" {
+      for_each = (var.assign_external_ip || var.create_static_ip) ? [1] : []
+      content {
+        nat_ip = var.create_static_ip ? google_compute_address.instance_ip.0.address : null
+      }
     }
   }
 
