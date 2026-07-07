@@ -66,7 +66,6 @@ resource "google_compute_instance" "instance" {
   lifecycle {
     ignore_changes = [
       boot_disk[0].initialize_params[0].image,
-      boot_disk[0].initialize_params[0].size,
     ]
   }
   resource_policies = var.resource_policies
